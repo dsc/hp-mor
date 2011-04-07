@@ -1,0 +1,4 @@
+draco: 24
+harry: 23
+hermione: 10
+dumbledore: 1

@@ -1,0 +1,8 @@
+harry: 1385
+draco: 343
+hermione: 203
+dumbledore: 164
+quirrell: 151
+mcgonagall: 105
+neville: 46
+snape: 11

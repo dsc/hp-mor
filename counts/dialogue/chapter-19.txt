@@ -1,0 +1,3 @@
+harry: 41
+quirrell: 23
+draco: 23

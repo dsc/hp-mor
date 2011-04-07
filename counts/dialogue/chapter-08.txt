@@ -1,0 +1,3 @@
+hermione: 23
+harry: 3
+neville: 1

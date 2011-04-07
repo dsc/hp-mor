@@ -1,0 +1,3 @@
+harry: 9
+mcgonagall: 3
+dumbledore: 3

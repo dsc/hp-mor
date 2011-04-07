@@ -1,0 +1,4 @@
+harry: 11
+hermione: 8
+neville: 7
+draco: 2

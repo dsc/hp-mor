@@ -1,0 +1,3 @@
+harry: 38
+quirrell: 26
+dumbledore: 8

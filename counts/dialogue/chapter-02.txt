@@ -1,0 +1,2 @@
+harry: 10
+mcgonagall: 6

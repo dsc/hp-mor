@@ -1,0 +1,4 @@
+harry: 25
+draco: 10
+neville: 3
+quirrell: 1

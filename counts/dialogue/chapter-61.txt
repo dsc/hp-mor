@@ -1,0 +1,2 @@
+dumbledore: 2
+harry: 1

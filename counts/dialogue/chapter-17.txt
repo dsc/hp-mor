@@ -1,0 +1,4 @@
+harry: 87
+dumbledore: 52
+draco: 11
+mcgonagall: 5
