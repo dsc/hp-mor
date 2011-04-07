@@ -3,13 +3,19 @@
 """
 tally.py -- Tallys HP:MoR dialogue lines by character.
 
-Script presumes you've scraped all the chapters into individual files and then 
+Script assumes a few things:
+
+1. You've scraped all the chapters into individual files and then 
 extracted only the chapter text, placing each in:
 
     txt/chapter-XX.txt
 
 In my files, I also removed all the paragraph markup, though that was just for
 my sanity -- it won't effect the counts.
+
+2. A list of characters, one per line, in etc/characters.txt
+
+3. A list of words that indicate dialogue, one per line, in etc/said-words.txt
 
 Requires: Python 2.6+, argparse, path.py
 
@@ -24,6 +30,7 @@ import sys, re
 from path import path
 from pprint import pprint
 from collections import Counter
+import yaml
 
 # dirs
 DIRS = 'etc txt counts'.split(' ')
@@ -40,17 +47,28 @@ def get_lines(p):
     with p.open('rU') as f:
         return f.read().strip().split('\n')
 
-CHARACTERS = get_lines(ETC/'characters.txt')
-CHARACTERS = get_lines(ETC/'said-words.txt')
-CHARACTERS = (ETC/'characters.txt').open('rU').read().strip().split('\n')
-SAID_WORDS = (ETC/'said-words.txt').open('rU').read().strip().split('\n')
-SAID_WORDS = 'replied quietly followed politely cried pressed screamed winced snarled sheathed shrugged imagined drawled spoke needed rose answered scowled spat resumed returned puzzled read offered laughed frowned hoped squeaked repeated hesitated suspected continued coughed reassured shouted sighed chuckled trailed warned guessed supposed swallowed called ignored talked says giggled roared angled paused say decided echoed allowed slumped forced stumbled said hissed wondered groaned gestured reminded remembered swore honestly snorted inclined announced told whispered added swayed gritted flinched blinked protested smiled snapped choked suggested figured sniggered considered invited studied grinned finished demanded dared thought gasped assumed breathed asked'.split(' ')
+def printf(s):
+    sys.stdout.write(s)
+    return s
 
-CHAPTER_PAT = re.compile(r'chapter-(\d+)\.txt')
+
+
+
+CHARACTERS = get_lines(ETC/'characters.txt')
+
+CHAPTER_PAT = re.compile(r'chapter-(\d+)\.(?:txt|html)')
 WORDS_PAT = re.compile(r"([\w']*)\s*(" + '|'.join(CHARACTERS) + r")(?:'s)?\s*([\w']*)", re.I)
 
-SAID_WORDS_PAT = '|'.join(SAID_WORDS)
-SAID_PAT = re.compile(r"("+SAID_WORDS_PAT+r")?\s*(" + '|'.join(CHARACTERS) + r")(?:'s)?\s*("+SAID_WORDS_PAT+r")?", re.I)
+opt_words = '(' + '|'.join(get_lines(ETC/'said-words.txt')) + ')?'
+SAID_PAT = re.compile(opt_words+r"\s*(" + '|'.join(CHARACTERS) + r")(?:'s)?\s*"+opt_words, re.I)
+
+
+def dirfiles(dir_path, glob_pat="*"):
+    "Wrapper around walking files in a directory."
+    for p in path(dir_path).glob(glob_pat):
+        with p.open('rU') as f:
+            txt = f.read()
+        yield (p, txt)
 
 
 from argparse import ArgumentParser
@@ -59,57 +77,57 @@ class Script(object):
     parser = ArgumentParser(description=__doc__)
     parser.add_argument('--version', action='version', version='.'.join(map(str,__version__)))
     
-    
-    
     def __init__(self, *args, **options):
         self.args    = args
         self.options = options
         # if not (self.args or self.options):
         #     self.parser.error("You must supply arguments or some shit!")
     
-    def __call__(self):
-        return self.count_words() or self.count_characters()
+    def getNum(self, p):
+        try:
+            return int(CHAPTER_PAT.search(p).group(1))
+        except:
+            print('Unable to extract chapter number from %r' % p)
+            raise
     
-    def count_characters(self):
-        characters_all = Counter()
+    def count_dialogue(self):
+        totals = Counter()
         
-        for p in path('txt/').glob('*.txt'):
-            characters = Counter()
-            i = int(CHAPTER_PAT.search(p).group(1))
+        for p, txt in dirfiles(TXT, '*.txt'):
+            chapter = Counter()
+            i = self.getNum(p)
             
-            sys.stdout.write("Counting lines by character for chapter %s... " % i)
-            
-            with p.open('rU') as f:
-                txt = f.read()
+            printf("Counting lines by character for chapter %s... " % i)
             
             for m in SAID_PAT.findall(txt):
                 who = m[1].lower()
-                if not (m[0] or m[2]):
+                
+                # ensure we haven't somehow matched a non-character as "who"
+                # regex makes word on each side optional, so ensure we found a word
+                if who not in CHARACTERS or not (m[0] or m[2]):
                     continue
                 
                 try:
-                    characters[who] += 1
-                    characters_all[who] += 1
+                    chapter[who] += 1
+                    totals[who] += 1
                 except:
-                    print "chapter %i!"
-                    pprint(characters)
+                    print "Chapter %s!" % i
+                    pprint(chapter)
                     print "---"
                     pprint(m)
                     raise
             
-            with path('counts/characters-{:>02}.txt'.format(i)).open('w') as out:
-                for pair in characters.most_common():
-                    word, n = pair
-                    if word in CHARACTERS:
-                        out.write('%s: %s\n' % pair)
+            with (COUNTS/'dialogue/chapter-{:>02}.txt'.format(i)).open('w') as out:
+                for pair in chapter.most_common(): # sorted
+                    out.write('%s: %s\n' % pair)
             
-            sys.stdout.write("ok\n")
+            printf("ok\n")
         
-        sys.stdout.write("Writing characters-all.txt... ")
-        with path('counts/characters-all.txt').open('w') as out:
-            for pair in characters_all.most_common():
+        printf("Writing counts/dialogue/totals.txt... ")
+        with (COUNTS/'dialogue/totals.txt').open('w') as out:
+            for pair in totals.most_common():
                 out.write('%s: %s\n' % pair)
-        sys.stdout.write("ok\n")
+        printf("ok\n")
         
         return 0
     
@@ -118,9 +136,9 @@ class Script(object):
         
         for p in path('txt/').glob('*.txt'):
             words = Counter()
-            i = int(CHAPTER_PAT.search(p).group(1))
+            i = self.getNum(p)
             
-            sys.stdout.write("Counting words for chapter %s... " % i)
+            printf("Counting words for chapter %s... " % i)
             
             with p.open('rU') as f:
                 txt = f.read()
@@ -143,15 +161,18 @@ class Script(object):
                     if word not in CHARACTERS:
                         out.write('%s: %s\n' % pair)
             
-            sys.stdout.write("ok\n")
+            printf("ok\n")
         
-        sys.stdout.write("Writing words-all.txt... ")
+        printf("Writing words-all.txt... ")
         with path('counts/words-all.txt').open('w') as out:
             for pair in words_all.most_common():
                 out.write('%s: %s\n' % pair)
-        sys.stdout.write("ok\n")
+        printf("ok\n")
         
         return 0
+    
+    def __call__(self):
+        return self.count_dialogue()
     
     def __repr__(self):
         return '{self.__class__.__name__}(args={self.args!r}, options={self.options!r})'.format(self=self)

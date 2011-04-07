@@ -1,0 +1,6 @@
+hermione: 13
+dumbledore: 6
+harry: 6
+quirrell: 3
+mcgonagall: 1
+draco: 1

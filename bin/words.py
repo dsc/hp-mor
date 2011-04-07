@@ -17,35 +17,60 @@ Note: chapter 64 has some unicode bullshit in it that I think I had to remove by
 hand. Be warned if you scrape it yourself.
 """
 
+
 __author__    = 'David Schoonover <dsc@less.ly>'
 __version__   = (0, 0, 1)
 
 import sys, re
 from path import path
-from argparse import ArgumentParser
 from pprint import pprint
 from collections import Counter
+import yaml
 
-CHARACTERS = "harry hermione draco quirrell dumbledore mcgonagall neville snape".split(' ')
-SAID_WORDS = 'replied quietly followed politely cried pressed screamed winced snarled sheathed shrugged imagined drawled spoke needed rose answered scowled spat resumed returned puzzled read offered laughed frowned hoped squeaked repeated hesitated suspected continued coughed reassured shouted sighed chuckled trailed warned guessed supposed swallowed called ignored talked says giggled roared angled paused say decided echoed allowed slumped forced stumbled said hissed wondered groaned gestured reminded remembered swore honestly snorted inclined announced told whispered added swayed gritted flinched blinked protested smiled snapped choked suggested figured sniggered considered invited studied grinned finished demanded dared thought gasped assumed breathed asked'.split(' ')
+# dirs
+DIRS = 'etc txt counts'.split(' ')
+for d in DIRS:
+    globals()[d.upper()] = path(d)
 
-CHAPTER_PAT = re.compile(r'chapter-(\d+)\.txt')
+# ensure
+for d in (DIRS + 'counts/words counts/dialogue'.split(' ')):
+    try:
+        path(d).makedirs()
+    except OSError: pass
+
+def get_lines(p):
+    with p.open('rU') as f:
+        return f.read().strip().split('\n')
+
+def printf(s):
+    sys.stdout.write(s)
+    return s
+
+
+
+
+CHARACTERS = get_lines(ETC/'characters.txt')
+
+CHAPTER_PAT = re.compile(r'chapter-(\d+)\.(?:txt|html)')
 WORDS_PAT = re.compile(r"([\w']*)\s*(" + '|'.join(CHARACTERS) + r")(?:'s)?\s*([\w']*)", re.I)
 
-SAID_WORDS_PAT = '|'.join(SAID_WORDS)
-SAID_PAT = re.compile(r"("+SAID_WORDS_PAT+r")?\s*(" + '|'.join(CHARACTERS) + r")(?:'s)?\s*("+SAID_WORDS_PAT+r")?", re.I)
+opt_words = '(' + '|'.join(get_lines(ETC/'said-words.txt')) + ')?'
+SAID_PAT = re.compile(opt_words+r"\s*(" + '|'.join(CHARACTERS) + r")(?:'s)?\s*"+opt_words, re.I)
 
-# ensure dirs we'll look in do exist
-for p in 'counts txt'.split(' '):
-    try:
-        path('counts').makedirs()
-    except OSError: pass
+
+def dirfiles(dir_path, glob_pat="*"):
+    "Wrapper around walking files in a directory."
+    for p in path(dir_path).glob(glob_pat):
+        with p.open('rU') as f:
+            txt = f.read()
+        yield (p, txt)
+
+
+from argparse import ArgumentParser
 
 class Script(object):
     parser = ArgumentParser(description=__doc__)
     parser.add_argument('--version', action='version', version='.'.join(map(str,__version__)))
-    
-    
     
     def __init__(self, *args, **options):
         self.args    = args
@@ -53,91 +78,51 @@ class Script(object):
         # if not (self.args or self.options):
         #     self.parser.error("You must supply arguments or some shit!")
     
-    def __call__(self):
-        return self.count_words() or self.count_characters()
+    def getNum(self, p):
+        try:
+            return int(CHAPTER_PAT.search(p).group(1))
+        except:
+            print('Unable to extract chapter number from %r' % p)
+            raise
     
-    def count_characters(self):
-        characters_all = Counter()
-        
-        for p in path('txt/').glob('*.txt'):
-            characters = Counter()
-            i = int(CHAPTER_PAT.search(p).group(1))
-            
-            sys.stdout.write("Counting lines by character for chapter %s... " % i)
-            
-            with p.open('rU') as f:
-                txt = f.read()
-            
-            for m in SAID_PAT.findall(txt):
-                who = m[1].lower()
-                if not (m[0] or m[2]):
-                    continue
-                
-                try:
-                    characters[who] += 1
-                    characters_all[who] += 1
-                except:
-                    print "chapter %i!"
-                    pprint(characters)
-                    print "---"
-                    pprint(m)
-                    raise
-            
-            with path('counts/characters-{:>02}.txt'.format(i)).open('w') as out:
-                for pair in characters.most_common():
-                    word, n = pair
-                    if word in CHARACTERS:
-                        out.write('%s: %s\n' % pair)
-            
-            sys.stdout.write("ok\n")
-        
-        sys.stdout.write("Writing characters-all.txt... ")
-        with path('counts/characters-all.txt').open('w') as out:
-            for pair in characters_all.most_common():
-                out.write('%s: %s\n' % pair)
-        sys.stdout.write("ok\n")
-        
-        return 0
     
     def count_words(self):
-        words_all = Counter()
+        totals = Counter()
         
-        for p in path('txt/').glob('*.txt'):
-            words = Counter()
-            i = int(CHAPTER_PAT.search(p).group(1))
+        for p, txt in dirfiles(TXT, '*.txt'):
+            chapter = Counter()
+            i = self.getNum(p)
             
-            sys.stdout.write("Counting words for chapter %s... " % i)
-            
-            with p.open('rU') as f:
-                txt = f.read()
+            printf("Counting words for chapter %s... " % i)
             
             for m in WORDS_PAT.findall(txt):
                 m = [ word.lower() for word in m if word ]
                 try:
-                    words.update(m)
-                    words_all.update(m)
+                    chapter.update(m)
+                    totals.update(m)
                 except:
-                    print "chapter %i!"
-                    pprint(words)
+                    print "Chapter %i!"
+                    pprint(chapter)
                     print "---"
                     pprint(m)
                     raise
             
-            with path('counts/words-{:>02}.txt'.format(i)).open('w') as out:
-                for pair in words.most_common():
-                    word, n = pair
-                    if word not in CHARACTERS:
-                        out.write('%s: %s\n' % pair)
+            with (COUNTS/'words/chapter-{:>02}.txt'.format(i)).open('w') as out:
+                for pair in chapter.most_common():
+                    out.write('%s: %s\n' % pair)
             
-            sys.stdout.write("ok\n")
+            printf("ok\n")
         
-        sys.stdout.write("Writing words-all.txt... ")
-        with path('counts/words-all.txt').open('w') as out:
-            for pair in words_all.most_common():
+        printf("Writing counts/words/totals.txt... ")
+        with (COUNTS/'words/totals.txt').open('w') as out:
+            for pair in totals.most_common():
                 out.write('%s: %s\n' % pair)
-        sys.stdout.write("ok\n")
+        printf("ok\n")
         
         return 0
+    
+    def __call__(self):
+        return self.count_words()
     
     def __repr__(self):
         return '{self.__class__.__name__}(args={self.args!r}, options={self.options!r})'.format(self=self)

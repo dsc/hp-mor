@@ -1,0 +1,4 @@
+harry: 26
+hermione: 12
+quirrell: 6
+dumbledore: 2

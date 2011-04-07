@@ -1,0 +1,4 @@
+harry: 42
+dumbledore: 20
+neville: 2
+hermione: 2

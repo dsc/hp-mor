@@ -1,0 +1,3 @@
+harry: 20
+hermione: 3
+quirrell: 2

@@ -1,0 +1,3 @@
+harry: 24
+neville: 4
+draco: 3

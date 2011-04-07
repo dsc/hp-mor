@@ -1,0 +1,4 @@
+draco: 9
+harry: 6
+quirrell: 1
+dumbledore: 1

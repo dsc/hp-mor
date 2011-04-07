@@ -1,0 +1,3 @@
+harry: 50
+draco: 43
+mcgonagall: 1
