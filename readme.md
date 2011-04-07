@@ -13,7 +13,13 @@ Here's the tally for the whole story:
     neville        46
     snape          11
 
-If some of those numbers look weird (like Snape) and you're curious, read the next section. By-chapter tallys follow at the end.
+
+So what does this tells us?
+
+* Harry probably has 3-4x more lines than the closest runner-up
+* Draco and Hermione are [surprisingly] about tied for second
+
+If some of those numbers look weird (like Snape), realize they're just estimates. Even so, I expect the ratios to be about the same in a real count (done manually by a human, I guess). If you're curious about methodology, read the next section. By-chapter tallys follow at the end.
 
 
 ## Methodology
@@ -24,7 +30,7 @@ The [first script](http://github.com/dsc/hp-mor/blob/master/bin/words.py) extrac
 
 Then a [second script](http://github.com/dsc/hp-mor/blob/master/bin/tally.py) went through everything again, this time only counting instances of those words preceeding or following a main character name, and keeping count by character. The totals are what you see above; the by-chapter tallys follow.
 
-You can download a tar of all this from [github](http://github.com/dsc/hp-mor).
+You can download all of this from [github](http://github.com/dsc/hp-mor).
 
 
 ## By Chapter
