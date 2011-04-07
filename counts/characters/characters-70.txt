@@ -1,0 +1,5 @@
+hermione: 17
+mcgonagall: 4
+quirrell: 2
+dumbledore: 2
+harry: 2

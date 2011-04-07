@@ -1,0 +1,5 @@
+harry: 27
+draco: 20
+hermione: 7
+neville: 4
+dumbledore: 2

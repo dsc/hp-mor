@@ -1,0 +1,4 @@
+harry: 42
+hermione: 25
+dumbledore: 12
+mcgonagall: 1

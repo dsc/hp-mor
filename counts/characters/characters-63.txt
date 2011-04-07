@@ -1,0 +1,5 @@
+harry: 39
+draco: 12
+neville: 7
+hermione: 4
+quirrell: 1

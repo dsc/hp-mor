@@ -1,0 +1,3 @@
+hermione: 5
+harry: 5
+neville: 1

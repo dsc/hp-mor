@@ -1,0 +1,4 @@
+harry: 32
+draco: 24
+hermione: 13
+quirrell: 7

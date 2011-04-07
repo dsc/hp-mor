@@ -1,0 +1,5 @@
+harry: 57
+neville: 13
+hermione: 3
+mcgonagall: 1
+quirrell: 1

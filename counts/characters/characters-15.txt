@@ -1,0 +1,3 @@
+harry: 12
+mcgonagall: 4
+hermione: 4

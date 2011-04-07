@@ -1,0 +1,3 @@
+draco: 25
+harry: 22
+dumbledore: 2

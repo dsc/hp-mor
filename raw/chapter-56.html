@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'><html><head>
+		<META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=UTF-8'>
+		<META NAME='ROBOTS' CONTENT='NOARCHIVE'>
+		<META http-equiv='X-UA-Compatible' content='IE=EmulateIE7'>
+		
+		<meta name="description" content="Chapter 56 of a Harry Potter  - Drama/Humor fanfiction with characters Harry P. & Hermione G.. Petunia married a professor, and Harry grew up reading science and science fiction. Then came the Hogwarts letter, introducing strange new opportunities to exploit. And new friends, like Hermione, and Professor McGonagall, and Professor Quirrell..">
+<link rel="canonical" href="/s/5782108/56/Harry_Potter_and_the_Methods_of_Rationality">
+<title>Harry Potter and the Methods of Rationality Chapter 56: TSPE, Constrained Optimization, Pt 6, a Harry Potter fanfic - FanFiction.Net</title>
+<link rel=StyleSheet href='http://b.fanfiction.net/static/styles/fanfiction38.css' type='text/css' media='all'>
+
+		<script type='text/javascript' src='http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.4.min.js'></script>
+		<script type='text/javascript' src='http://b.fanfiction.net/static/scripts/_master180_min.js'></script>
+		
+
+					<script type="text/javascript">
+					if(getCookie('adblocker') < 1) {
+						document.write("<scr" + "ipt type='text/javascript' src='http://partner.googleadservices.com/gampad/google_service.js'></scr" + "ipt>");
+					}
+					</script>
+
+					<script type="text/javascript">
+					if(getCookie('adblocker') < 1) {
+					  GS_googleAddAdSenseService("ca-pub-1402966127069733");
+					  GS_googleEnableAllServices();
+					}
+					</script><script type="text/javascript">
+								if(getCookie('adblocker') < 1) {
+									  GA_googleAddSlot("ca-pub-1402966127069733", "ff_banner_728x90");
+									  GA_googleAddSlot("ca-pub-1402966127069733", "ff_text_728x90_bottom");
+									}
+									</script><script type="text/javascript">
+					if(getCookie('adblocker') < 1) {
+					  GA_googleFetchAds();
+					}
+					</script>
+		<link rel='shortcut icon'  href='http://b.fanfiction.net/static/images/favicon_2010_site.ico'>
+		<link rel='icon' type='image/png' href='http://b.fanfiction.net/static/images/favicon_2010_site.png'>
+		<link rel='apple-touch-icon' href='http://b.fanfiction.net/static/images/favicon_2010_iphone.png'>
+		</head><body style='background-color:#ffffff;margin-top:0px;'  > <a name=top></a>
+
+<div style='background-color: #333399; height:2em; padding-top:0.5em; vertical-align:middle;' class='myborder menulinks'>
+<span style='float:right;'>
+<span id=xmark_links></span>
+<a href='http://login.fanfiction.net/login.php' style='color:white;'>Sign In</a> .
+<a href='http://login.fanfiction.net/registration.php' style='color:white;'>Sign Up</a> .&nbsp;&nbsp;
+</span><img src='http://b.fanfiction.net/static/images/favicon_2010_site.png' width=16 height=16 style='vertical-align:middle'> <a href='http://www.fanfiction.net/' style='font-weight:bold;'>FanFiction.Net</a> - unleash your imagination <img src='http://b.fanfiction.net/static/ficons/phone.png' width=16 height=16 style='vertical-align:middle'><a href='http://m.fanfiction.net/m/yes_mobile.php'>mobile edition</a></div><div id=bookmarx_msg style='display:none;margin-top:5px;margin-left:10px;margin-right:10px;'>
+</div>
+<div id=bookmarx style='display:none;margin-top:5px;margin-bottom:5px;margin-left:10px;margin-right:10px;'>
+</div>
+<span class=zmenu style='float:right;height:1.8em;padding-top:0.5em;vertical-align:middle'>
+<span class=zui >
+	<a href='http://www.fanfiction.net/support/' id=menu-extra class=menu-link>Help</a>
+</span>
+</span>
+
+<div  class=zmenu style='height:1.8em;padding-top:0.5em;vertical-align:middle'>
+<span class=zui >
+	<a href='http://www.fanfiction.net/' id=menu-home class=menu-link>Home</a>
+	<a href='http://www.fanfiction.net/j/0/0/0/' id=menu-justin class=menu-link>Just In</a>
+	<a href='http://www.fanfiction.net/communities/' id=menu-community class=menu-link>Communities</a>
+	<a href='http://www.fanfiction.net/forums/' id=menu-forum class=menu-link>Forums</a>
+	<a href='http://www.fanfiction.net/betareaders/' id=menu-beta class=menu-link>Beta Readers</a>
+	<!-- <a href='http://www.fanfiction.net/dictionary/' id=menu-dictionary class=menu-link>Dictionary</a> -->
+	<a href='http://www.fanfiction.net/search.php' id=menu-search class=menu-link>Search</a>
+
+</span>
+</div>
+
+
+
+<div id='menu-home-c'  class='menu-child zhide' >
+<span id='menu-home-c-i'>
+Browse &#187;
+<a href='http://www.fanfiction.net/anime/'>Anime</a> <a href='http://www.fanfiction.net/crossovers/anime/' title='anime crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/book/'>Books</a> <a href='http://www.fanfiction.net/crossovers/book/' title='book crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/cartoon/'>Cartoons</a> <a href='http://www.fanfiction.net/crossovers/cartoon/' title='cartoon crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/comic/'>Comics</a> <a href='http://www.fanfiction.net/crossovers/comic/' title='comic crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/game/'>Games</a> <a href='http://www.fanfiction.net/crossovers/game/' title='game crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/misc/'>Misc</a> <a href='http://www.fanfiction.net/crossovers/misc/' title='misc crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/movie/'>Movies</a> <a href='http://www.fanfiction.net/crossovers/movie/' title='movie crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/play/'>Plays</a> <a href='http://www.fanfiction.net/crossovers/play/' title='play crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/tv/'>TV</a> <a href='http://www.fanfiction.net/crossovers/tv/' title='tv crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a>
+</span>
+</div>
+
+<div id='menu-justin-c'  class='menu-child zhide'>
+<span id='menu-justin-c-i'>
+Just In &#187;
+<a href='http://www.fanfiction.net/j/0/0/0/'>All</a> . Stories: 
+<a href='http://www.fanfiction.net/j/0/1/0/'>New</a> . 
+<a href='http://www.fanfiction.net/j/0/2/0/'>Updated</a> . Crossovers:  
+<a href='http://www.fanfiction.net/j/0/3/0/'>New</a> .  
+<a href='http://www.fanfiction.net/j/0/4/0/'>Updated</a>
+</span>
+</div>
+
+
+<div id='menu-community-c' class='menu-child zhide'>
+<span id='menu-community-c-i'>
+Communities &#187;
+<a href='http://www.fanfiction.net/communities/general/0/'>General</a> .
+<a href='http://www.fanfiction.net/communities/anime/'>Anime</a> .
+<a href='http://www.fanfiction.net/communities/book/'>Books</a> .
+<a href='http://www.fanfiction.net/communities/cartoon/'>Cartoons</a> .
+<a href='http://www.fanfiction.net/communities/comic/'>Comics</a> .
+<a href='http://www.fanfiction.net/communities/game/'>Games</a> .
+<a href='http://www.fanfiction.net/communities/misc/'>Misc</a> .
+<a href='http://www.fanfiction.net/communities/movie/'>Movies</a> .
+<a href='http://www.fanfiction.net/communities/play/'>Plays</a> .
+<a href='http://www.fanfiction.net/communities/tv/'>TV</a>
+</span>
+</div>
+
+<div id='menu-forum-c' class='menu-child zhide'>
+<span id='menu-forum-c-i'>
+Forums &#187;
+<a href='http://www.fanfiction.net/forums/general/0/'>General</a> .
+<a href='http://www.fanfiction.net/forums/anime/'>Anime</a> .
+<a href='http://www.fanfiction.net/forums/book/'>Books</a> .
+<a href='http://www.fanfiction.net/forums/cartoon/'>Cartoons</a> .
+<a href='http://www.fanfiction.net/forums/comic/'>Comics</a> .
+<a href='http://www.fanfiction.net/forums/game/'>Games</a> .
+<a href='http://www.fanfiction.net/forums/misc/'>Misc</a> .
+<a href='http://www.fanfiction.net/forums/movie/'>Movies</a> .
+<a href='http://www.fanfiction.net/forums/play/'>Plays</a> .
+<a href='http://www.fanfiction.net/forums/tv/'>TV</a>
+</span>
+</div>
+
+<div id='menu-beta-c' class='menu-child zhide'>
+<span id='menu-beta-c-i'>
+Browse for <a href='http://www.fanfiction.net/betareaders/'>Beta Readers</a>
+</span>
+</div>
+
+
+<div id='menu-dictionary-c' class='menu-child zhide' style='padding-top:6px;padding-bottom:5px'>
+<form method=get onSubmit="var wv = this.word.value.replace(/^\s+|\s+$/g, '');wv = escape(wv.replace(' ','+'));if(wv.length) {document.location = 'http://www.fanfiction.net/dictionary/'+wv+'/';}return false;">
+<table cellpadding=0 cellspacing=0 id='menu-dictionary-c-i'><tr>
+	<td ><label for='word'>Dictionary &#187;&nbsp;</label></td>
+	<td>
+		<INPUT id='word' title='word input' TYPE=text value='word' placeholder='word'  name=word size=20 maxlength=75>
+		<INPUT TYPE=submit value=Search>
+	</td>
+</tr>
+</table>
+</form>
+</div>
+
+<div id='menu-search-c' class='menu-child zhide' style='padding-top:6px;padding-bottom:5px'>
+<FORM method=get name='topx_search' action='http://www.fanfiction.net/search.php'>
+<TABLE cellpadding=0 cellspacing=0 id='menu-search-c-i'>
+<TR>
+<td valign=middle><label for='keyword'>Search &#187;&nbsp;</label></td>
+	<TD valign=middle>
+	<SELECT title='Search types' Name=type>
+
+		<option value=story selected>Story
+		<option value=author >Author
+		<option value=forum>Forum
+		<option value=community>Community
+
+
+		</SELECT>&nbsp;
+	</TD>
+	<TD valign=middle >
+	<INPUT id=keyword style='padding:2px' placeholder='keywords' title='Search with these keywords/phrases' TYPE=text name='plus_keywords' size=20 maxlength=50>
+	</TD>
+	<TD valign=middle>
+	<INPUT TYPE=submit value=Search>
+	<INPUT TYPE=hidden name=ready value=1>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+</div>
+
+<div id='menu-extra-c'  class='menu-child zhide'>
+<span id='menu-extra-c-i'>
+Help &#187;
+<a href='http://www.fanfiction.net/support/'>Support</a> .
+<a href='http://www.fanfiction.net/privacy/'>Privacy</a> .
+<a href='http://www.fanfiction.net/tos/'>TOS</a> .
+<a href='http://login.fanfiction.net/adblocker.php'>Ad Blocker</a> .
+</span>
+</div>
+
+
+<script type='text/javascript'>
+xmenu_render();
+</script>
+		
+			<center>
+			<div style='border-bottom:1px solid #CDCDCD;background-image:url("http://b.fanfiction.net/static/images/adbg.gif");padding-top:2px;padding-bottom:2px;padding-left:10px;padding-right:10px;align=center;' align=center>
+			<script type='text/javascript'>
+			if(getCookie('adblocker') < 1) {GA_googleFillSlot('ff_banner_728x90');}
+			</script>
+			</div>
+			</center>
+			
+
+		<div style='padding-left:1em;padding-right:1em;padding-top:0.5em;'>
+
+<div>
+<table style='float:right'>
+<tr>
+	<td valign=middle><img src='http://b.fanfiction.net/static/fcons/ui-label.png' width=16 height=16  border=0  title='font styles'></td>
+	<td>
+		<a title='Increase Font Size' href="javascript:updateFontSize('u');">B</a> <a title='Decrease Font Size' href="javascript:updateFontSize('d');">s</a> .
+		<a title='Use Verdana Font' href="javascript:updateFontStyle('Verdana');" style='font-family:Verdana'>A</a>
+		<a title='Use Serif Font' href="javascript:updateFontStyle('Serif');" style='font-family:Serif;'>A</a>
+		<a title='Use Sans-serif Font' href="javascript:updateFontStyle('Sans-serif');" style='font-family:Sans-serif'>A</a>
+		&nbsp;
+	</td>
+	<td><img src='http://b.fanfiction.net/static/fcons/edit-alignment-justify.png' width=16 height=16  border=0  title='story width'></td>
+	<td>
+		<a href='#' onclick='updateFontWidth(100);'>full</a>
+		<a href='#' onclick='updateFontWidth(75);'>3/4</a>
+		<a href='#' onclick='updateFontWidth(50);'>1/2</a>
+		&nbsp;
+	</td>
+	<td><img src='http://b.fanfiction.net/static/fcons/edit-line-spacing.png' width=16 height=16  border=0  title='story line spacing'></td>
+	<td>
+		<a href='#' onclick='updateFontHeight("u");'>E</a>
+		<a href='#' onclick='updateFontHeight("d");'><small>E</small></a>
+		&nbsp;
+	</td>
+	<td><img src='http://b.fanfiction.net/static/fcons/contrast.png' width=16 height=16  border=0  title='story brightness/contrast'></td>
+	<td>
+		<a href='#' onclick='updateFontColor("light");'>Light</a>
+		<a href='#' onclick='updateFontColor("dark");'>Dark</a>
+	</td>
+</tr>
+</table>
+
+<img src='http://b.fanfiction.net/static/ficons/script.png' width=16 height=16  border=0  align=absmiddle> <a href='/book/'>Books</a> &#187; <a href="/book/Harry_Potter/">Harry Potter</a> &#187; <b>Harry Potter and the Methods of Rationality</b>
+</div>
+<div class=sep></div>
+
+<table width=100% cellspacing=0 cellpadding=0>
+<tr>
+<td>
+<img width=25 height=25 style='border:1px solid #cdcdcd;margin-right:4px' src='http://b.fanfiction.net/static/images/default_25.png' ALIGN=left>
+<a href='/u/2269863/Less_Wrong'>Less Wrong</a>
+<br><small><span style='color:gray'>Author of 1 Story</span></small>
+</td>
+<td align=right>
+<INPUT TYPE=BUTTON Value='&nbsp;&lt; Prev&nbsp;' onClick="self.location='/s/5782108/55/Harry_Potter_and_the_Methods_of_Rationality'"> <SELECT title='chapter navigation' Name=chapter onChange="self.location = '/s/5782108/'+ this.options[this.selectedIndex].value + '/Harry_Potter_and_the_Methods_of_Rationality';"><option  value=1 >1. A Day of Very Low Probability<option  value=2 >2. Everything I Believe Is False<option  value=3 >3. Comparing Reality To Its Alternatives<option  value=4 >4. The Efficient Market Hypothesis<option  value=5 >5. The Fundamental Attribution Error<option  value=6 >6. The Planning Fallacy<option  value=7 >7. Reciprocation<option  value=8 >8. Positive Bias<option  value=9 >9. Title Redacted, Part I<option  value=10 >10. Self Awareness, Part II<option  value=11 >11. Omake Files 1 and 2<option  value=12 >12. Impulse Control<option  value=13 >13. Asking the Wrong Questions<option  value=14 >14. The Unknown and the Unknowable<option  value=15 >15. Conscientiousness<option  value=16 >16. Lateral Thinking<option  value=17 >17. Locating the Hypothesis<option  value=18 >18. Dominance Hierarchies<option  value=19 >19. Delayed Gratification<option  value=20 >20. Bayes's Theorem<option  value=21 >21. Rationalization<option  value=22 >22. The Scientific Method<option  value=23 >23. Belief in Belief<option  value=24 >24. Machiavellian Intelligence Hypothesis<option  value=25 >25. Hold Off on Proposing Solutions<option  value=26 >26. Noticing Confusion<option  value=27 >27. Empathy<option  value=28 >28. Reductionism<option  value=29 >29. Egocentric Bias<option  value=30 >30. Working in Groups, Pt 1<option  value=31 >31. Working in Groups, Pt 2<option  value=32 >32. Interlude: Personal Financial Management<option  value=33 >33. Coordination Problems, Pt 1<option  value=34 >34. Coordination Problems, Pt 2<option  value=35 >35. Coordination Problems, Pt 3<option  value=36 >36. Status Differentials<option  value=37 >37. Interlude: Crossing the Boundary<option  value=38 >38. The Cardinal Sin<option  value=39 >39. Pretending to be Wise, Pt 1<option  value=40 >40. Pretending to be Wise, Pt 2<option  value=41 >41. Frontal Override<option  value=42 >42. Courage<option  value=43 >43. Humanism, Pt 1<option  value=44 >44. Humanism, Pt 2<option  value=45 >45. Humanism, Pt 3<option  value=46 >46. Humanism, Pt 4<option  value=47 >47. Personhood Theory<option  value=48 >48. Utilitarian Priorities<option  value=49 >49. Prior Information<option  value=50 >50. Self Centeredness<option  value=51 >51. Title Redacted, Pt 1<option  value=52 >52. The Stanford Prison Experiment, Pt 2<option  value=53 >53. The Stanford Prison Experiment, Pt 3<option  value=54 >54. The Stanford Prison Experiment, Pt 4<option  value=55 >55. The Stanford Prison Experiment, Pt 5<option  value=56 selected>56. TSPE, Constrained Optimization, Pt 6<option  value=57 >57. TSPE, Constrained Cognition, Pt 7<option  value=58 >58. TSPE, Constrained Cognition, Pt 8<option  value=59 >59. TSPE, Curiosity, Pt 9<option  value=60 >60. The Stanford Prison Experiment, Pt 10<option  value=61 >61. TSPE, Secrecy and Openness, Pt 11<option  value=62 >62. The Stanford Prison Experiment, Final<option  value=63 >63. TSPE, Aftermaths</select> <INPUT TYPE=BUTTON Value='&nbsp;Next &gt;&nbsp;' onClick="self.location='/s/5782108/57/Harry_Potter_and_the_Methods_of_Rationality'">
+</td>
+</tr>
+</table>
+<div class=sep></div>
+Rated: <a href='http://www.fictionratings.com/' target='rating'> T</a> - English - Drama/Humor -  Harry P. & Hermione G. - Reviews: <a href='/r/5782108/'>10,173</a> - Updated: 11-28-10 - Published: 02-28-10 - id:5782108 <script type='text/javascript'>
+document.write('<style>.storytext { width: '+myfontwidth+'%; font-size:' + myfontsize + 'px; font-family: "'+myfontstyle+'"; line-height: '+myfontheight+'; text-align: left; color: '+myfontcolor+';} .storytextp {background-color: '+myfontcolorbg+'; }</style>');
+
+$().ready(function() {
+	
+	$.get('http://www.fanfiction.net/eye/3/1/22432181/5782108/'); //record eye stats
+});
+</script><div class=sep></div>
+
+<div id=storytextp class=storytextp align=center style='padding:10px;'>
+<div id=storytext class=storytext><p>Silent, it was thankfully silent, the metal door on the next level down. Either there wasn't someone behind there, or they were hurting quietly, maybe they were screaming but their voice had given out already, or they were just muttering quietly to themselves in the dark...</p><p><i>I'm not sure I can do this,</i> Harry thought, and he couldn't blame the despairing thought on the Dementors either. It would be better to be lower, safer to be lower, his plan would take time to implement and the Aurors were probably already working their way down. But if Harry had to pass any more of those metal doors while staying silent and keeping his breathing perfectly regular, he might go mad; if he had to leave a piece of himself behind at each one, soon there wouldn't be anything left of him -</p><p>A luminous moonlit cat leaped into existence and landed in front of Harry's Patronus. Harry almost screamed, which wouldn't have helped his image with Bellatrix.</p><p>"Harry!" said the voice of Professor McGonagall, sounding as alarmed as Harry had ever heard from her. "Where are you? Are you all right? This is my Patronus, answer me!"</p><p>With a convulsive effort, Harry cleared his mind, repurposed his throat, forced calm, swapped in a different personality like an Occlumency barrier. It took a few seconds and he hoped like hell that Professor McGonagall didn't notice a problem with that thanks to the communications delay, just as he hoped like hell that Patronuses didn't report on their surroundings.</p><p>A young boy's innocent voice said, "I'm in Mary's Place, Professor, in Diagon Alley. Going to the restroom actually. What's wrong?"</p><p>The cat leaped away, and Bellatrix began to chuckle softly, dusty appreciative laughter, but she cut herself off abruptly at a hiss from Harry.</p><p>A moment later the cat returned, and said in Professor McGonagall's voice, "I'm coming to pick you up right now. Don't go <i>anywhere</i>, if you're not around the Defense Professor don't go back to him, don't say anything to anyone, I'll be there as quickly as I can!"</p><p>And the bright cat blurred forward and vanished.</p><p>Harry glanced down at his watch, noting down the time, so that after he got everyone out of here, and Professor Quirrell anchored the Time-Turner again, he could go back and be in the restroom of Mary's Place at the appropriate time...</p><p><i>You know,</i> said the problem-solving part of his brain, <i>there's a limit to how many constraints you can add to a problem before it </i>really is <i>impossible, you know that?</i></p><p>It shouldn't have mattered, and it didn't really, it didn't compare to the suffering of a single prisoner in Azkaban, and yet Harry still found himself feeling very aware that if his plan didn't end with him being picked up from Mary's Place just like he'd never left, and the Defense Professor looking completely innocent of any and all wrongdoing, Professor McGonagall was going to <i>kill him.</i></p><hr size=1 noshade><p>As their team prepared to eat another bite of territory out of C spiral, shielding and scanning before dispelling the previous shield to their rear, Amelia was tapping her fingers on her hip and wondering if she ought to consult the obvious expert. If only he wasn't so -</p><p>Amelia heard the familiar crack of fire and knew what she would see as she turned.</p><p>A third of her Aurors were spinning around and leveling their wands on the old wizard in half-moon glasses and a long silver beard who had appeared directly within their midst, a bright red-golden phoenix on his shoulder.</p><p>"Hold your fire!" Polyjuice made it easy to forge the face, but faking the phoenix travel would have been rather more difficult - the wards permitted it as one of the fast ways into Azkaban, though there were no fast ways out.</p><p>The old witch and the old wizard stared at each other for a long moment.</p><p>(Amelia wondered, in the back of her mind, which of her Aurors had sent the word, there were several former members of the Order of the Phoenix with her; she tried to remember, in the back of her mind, if she'd seen Emmeline's sparrow or Andy's cat missing from the flock of bright creatures; but she knew that it was futile. It might not even be any of her people, for the old meddler often knew things he had no way at all of knowing.)</p><p>Albus Dumbledore inclined his head to Amelia in a courteous gesture. "I hope I am not unwelcome here," the wizard said calmly. "We are all on the same side, are we not?"</p><p>"That depends," Amelia said in a hard voice. "Are you here to help us catch criminals, or to protect them from the consequences of their actions?" <i>Are you going to try to stop the killer of my brother from getting her well-deserved Kiss, old meddler?</i> From what Amelia heard, Dumbledore had gotten smarter toward the end of the war, mostly due to Mad-Eye's nonstop nagging; but had relapsed into his foolish mercies the instant Voldemort's body was found.</p><p>A dozen small points of white and silver, reflections of the shining animals, gleamed off the old wizard's half-moon glasses as he spoke. "Even less than you would I see Bellatrix Black freed," the old wizard said. "She <i>must</i> not leave this prison alive, Amelia."</p><p>Before Amelia could speak again, even to express her surprised gratification, the old wizard gestured with his long black wand and a blazing silver phoenix sprang into existence, brighter perhaps than all their other Patronuses put together. It was the first time she'd seen that spell cast wordlessly. "Order all your Aurors to cancel their Patronus Charms for ten seconds," said the old wizard. "What darkness cannot find, the light may."</p><p>Amelia snapped off the order to the communications officer, who would notify all Aurors through their mirrors, commanding Dumbledore's will to be done.</p><p>That took a few moments, and it became a period of awful silence, none of the Aurors daring to speak, while Amelia tried to weigh her own thoughts. <i>She must not leave this prison alive...</i> Albus Dumbledore wouldn't turn into Bartemius Crouch without a strong reason. If he'd meant to tell her <i>why</i>, he already would have; but it certainly wasn't a positive sign.</p><p>Still, it was good to know they'd be able to work together on this one.</p><p>"Now," said a chorus of mirrors, and all the Patronus Charms winked out except that blazing silver phoenix.</p><p>"Is there another Patronus still present?" the old wizard said clearly to the bright creature.</p><p>The bright creature dipped its head in a nod.</p><p>"Can you find it?"</p><p>The silver head nodded again.</p><p>"Will you remember it, should it depart and come again?"</p><p>A final nod from the blazing phoenix.</p><p>"It is done," Dumbledore said.</p><p>"Over," said all the mirrors a moment later, and Amelia raised her wand and began recasting her own Patronus. (Though it took some extra concentration, with that wolfish smile already on her face, to think of the first time Susan had kissed her cheek, instead of dwelling on the looming fate of Bellatrix Black. That other Kiss was a happy thought indeed, but not quite the right kind for the Patronus Charm.)</p><hr size=1 noshade><p>They hadn't even gotten to the end of that corridor before Harry's Patronus raised its hand, politely, as though in a classroom.</p><p>Harry thought quickly. The question was how to - no, that was also obvious.</p><p>"It seems," Harry said in a coldly amused voice, "that someone has instructed this Patronus to speak its message only to me." He chuckled. "Well then. Pardon me, dear Bella. <i>Quietus.</i>"</p><p>At once the silver humanoid said in Harry's own voice, "There is another Patronus which seeks this Patronus."</p><p>"<i>What?</i>" said Harry. And then, without pausing to think about what was happening, "Can you block it? Stop it from finding you?"</p><p>The silver humanoid shook its head.</p><hr size=1 noshade><p>No sooner did Amelia and the other Aurors finish recasting their Patronus Charms, when -</p><p>The blazing silver phoenix flew off, and the true red-golden phoenix followed it, and the old wizard calmly strode after both of them with his long wand gripped low.</p><p>The shields around their territory parted around the old wizard like water, and closed behind him with hardly a ripple.</p><p>"<i>Albus!</i>" shouted Amelia. "What do you think you're doing?"</p><p>But she already knew.</p><p>"Do not follow me," the old wizard's voice said sternly. "I can protect myself, I cannot protect others."</p><p>The curse Amelia shouted after him made even her own Aurors flinch.</p><hr size=1 noshade><p><i>This isn't fair, isn't fair, isn't fair! There's a limit to how many constraints you can add to a problem before it really is impossible!</i></p><p>Harry blocked off the useless thoughts, ignored the fatigue he was feeling, and forced his mind to confront the new requirements, he had to think <i>fast,</i> use the adrenaline on following the chains of logic quickly and without hesitation, instead of wasting it on despair.</p><p>For the mission to succeed,</p><p>(1) Harry would have to dispel his Patronus.</p><p>(2) Bellatrix needed to be hidden from the Dementors after the Patronus was dispelled.</p><p>(3) Harry needed to resist the Dementors' drain after his Patronus was dispelled.</p><p>...</p><p><i>If I solve this one,</i> said Harry's brain, <i>I want a cookie afterward, and if you make the problem any more difficult than this, I mean the slightest bit more difficult, I am climbing out of your skull and heading for Tahiti.</i></p><p>Harry and his brain considered the problem.</p><p>Azkaban had stood invincible for centuries, relying upon the impossibility of evading the Dementors' gaze. So if Harry found <i>another</i> way to hide Bellatrix from the Dementors, it would rely on either his scientific knowledge or his realization that the Dementors were Death.</p><p>Harry's brain suggested that an obvious way to stop the Dementors from seeing Bellatrix was to make her stop existing, i.e., kill her.</p><p>Harry congratulated his brain on thinking outside the box and told it to continue searching.</p><p><i>Kill her and then bring her back,</i> came the next suggestion. <i>Use Frigideiro to cool Bellatrix down to the point where her brain activity stops, then warm her up afterward using Thermos, just like people who fall into very cold water can be successfully revived half-an-hour later without noticeable brain damage.</i></p><p>Harry considered this. Bellatrix might not survive in her debilitated state. <i>And</i> it might not stop Death from seeing her. <i>And</i> he'd have trouble carrying a cold unconscious Bellatrix very far. <i>And</i> Harry couldn't remember the research on which exact body temperature was supposed to be nonfatal but temporarily-brain-halting.</p><p>It was another good outside-the-box idea, but Harry told his brain to keep thinking of...</p><p><i>...ways to hide from Death...</i></p><p>A frown moved over Harry's face. He'd heard something about that, somewhere.</p><p><i>One of the requisites for becoming a powerful wizard is an excellent memory,</i> Professor Quirrell had said.<i> The key to a puzzle is often something you read twenty years ago in an old scroll, or a peculiar ring you saw on the finger of a man you met only once...</i></p><p>Harry focused as hard as he could, but he couldn't remember, it was on the tip of his tongue but he couldn't remember; so he told his subconscious to go on trying to recollect it, and refocused his attention on the other half of the problem.</p><p><i>How can I protect myself from the Dementors without a Patronus Charm?</i></p><p>The Headmaster had been repeatedly exposed to a Dementor from a few steps away, over and over throughout a whole day, and had come out of it looking merely tired. How had the Headmaster done that? Could Harry do it too?</p><p>It could just be some random genetic thing, in which case Harry was screwed. But assuming the problem <i>was</i> solvable...</p><p>Then the obvious answer was that Dumbledore wasn't afraid of death.</p><p>Dumbledore <i>really</i> wasn't afraid of death. Dumbledore honestly, truly believed that death was the next great adventure. Believed it in his core, not just as convenient words used to suppress cognitive dissonance, not just pretending to be wise. Dumbledore had decided that death was the natural and normative order, and whatever tiny lingering fear was still in him, it had taken a long time and repeated exposures for the Dementor to drain him through that small flaw.</p><p>That avenue was closed to Harry.</p><p>And then Harry thought of the flip side, the obvious inverse question:</p><p><i>Why am I so much more vulnerable than average? Other students didn't fall over when they faced the Dementor.</i></p><p>Harry meant to destroy Death, to end it if he could. He meant to live forever, if he could; he had hope of it, the thought of Death brought him no sense of despair or inevitability. He was not blindly attached to his own life, did not value himself above others; indeed it had taken an effort <i>not</i> to burn away all of his own life on the need to protect others from Death. Why did the shadows of Death have such power over Harry? He would not have thought himself so afraid.</p><p>Was it Harry, all along, who'd been rationalizing? Who was secretly so afraid of death that it was twisting his own thoughts, as Harry had accused Dumbledore?</p><p>Harry considered this, preventing himself from flinching away. It felt uncomfortable, but...</p><p>But...</p><p>But uncomfortable thoughts weren't always <i>true</i>, and this one didn't sound exactly right. Like there was a grain of truth in it, but it wasn't hiding <i>where</i> the hypothesis said it was -</p><p>And that was when Harry realized.</p><p><i>Oh.</i></p><p><i>Oh, I understand now.</i></p><p><i>The one who is afraid, is...</i></p><p>Harry asked his dark side what it thought of death.</p><p>And Harry's Patronus wavered, dimmed, almost went out upon the instant, for that desperate, sobbing, screaming terror, an unutterable fear that would do anything not to die, throw everything aside not to die, that couldn't think straight or feel straight in the presence of that absolute horror, that couldn't look into the abyss of nonexistence any more than it could have stared straight into the Sun, a blind terrified thing that only wanted to find a dark corner and hide and not have to think about it any more -</p><p>The silver figure had darkened to moonlight, was flickering like a failing candle -</p><p><i>It's all right,</i> thought Harry, <i>it's all right.</i></p><p>Visualizing himself cradling his dark side like a frightened child in his arms.</p><p><i>It's right and proper to be horrified, because death is horrible. You don't have to hide your horror, you don't have to feel ashamed of it, you can wear it as a badge of honor, openly in the Sun.</i></p><p>It was strange, to feel himself split in two like this, the track of his thoughts that gave the comfort, the track of his thoughts that followed his dark side's incomprehension at the alienness of the ordinary Harry's thoughts; of all the things that his dark side associated with its own fear of death, the one thing it had never expected or imagined that it might find, was acceptance and praise and help...</p><p><i>You don't have to fight alone,</i> Harry said silently to his dark side. <i>The rest of me will back you up on this. I won't let myself die, and I won't let my friends die either. Not you/I, not Hermione, not Mum or Dad, not Neville or Draco or anyone, this is the will to protect... </i>Visualizing wings of sunlight, like the wings of the Patronus he had spread, to give shelter to that frightened child.</p><p>The Patronus brightened again, the world spun around Harry or it was his own mind that was spinning?</p><p><i>Take my hand,</i> Harry thought and visualized, <i>come with me, and we will do this thing together...<br></i></p><p>There was a lurch in Harry's mind, like his brain had taken one step to the left, or the universe had taken one step to the right.</p><p>And in a brightly lit corridor in Azkaban, the dim gas lights far outshone by the steady and unwavering light of a human-shaped Patronus, an invisible boy stood with a strange small smile on his face, shaking only slightly.</p><p>Harry knew, somehow, that he'd just done something significant, something that went beyond just strengthening his resistance to Dementors.</p><p>And more than that, he'd <i>remembered</i>. Thinking of Death as an anthropomorphic figure had done the trick, ironically enough. Now Harry could remember it, what was reputed to hide someone from the gaze of Death himself...</p><hr size=1 noshade><p>In a corridor of Azkaban, a wizard's striding legs came to an abrupt halt; for the bright silver thing that was his guide, had halted in midair, fluttering its wings in distress. The brilliant white phoenix craned its head, looking backward and forward as though confused; and then it turned to its master and shook its head in apology.</p><p>Without another word, the old wizard turned and strode back the way he came.</p><hr size=1 noshade><p>Harry stood straight and upright, feeling the fear wash over him and around him. Some tiny part of him might have been eroded a little by the waves of emptiness that broke continually upon his unmoving stone, but his limbs were not cold, and his magic was with him. In time those waves might corrode him and consume him, sneaking through whatever tiny part of him still cowered before Death instead of using its fear to energize itself for battle. But that doom would take time, with the shadows of Death far away and uncaring of him. The flaw, the crack, the fault-line that was in him had been repaired, and the stars blazed brightly in his mind, vast and unafraid, eternal and peaceful, and brilliant in the midst of the cold and darkness.</p><p>To anyone else's eyes, it would have seemed that the boy stood alone in the dimly lit metal corridor, wearing that strange smile.</p><p>For Bellatrix Black and the snake draped around her shoulders were concealed by the Cloak of Invisibility, one of the three Deathly Hallows and reputed to hide its wearer from the gaze of Death himself. The riddle whose answer had been lost, and which Harry had found anew.</p><p>And Harry knew, now, that the concealment of the Cloak was more than the mere transparency of Disillusionment, that the Cloak kept you <i>hidden</i> and not just invisible, as unseeable as were Thestrals to the unknowing. And Harry also knew that it was Thestral blood which painted the symbol of the Deathly Hallows on the inside of the Cloak, binding into the Cloak that portion of Death's power, enabling the Cloak to confront the Dementors on their own level and block them. It had felt like guessing, and yet a certain guess, the knowledge coming to him in the instant of solving the riddle.</p><p>Bellatrix was still transparent within the Cloak, but to Harry she was no longer hidden, he knew that she was there, as obvious to him as a Thestral. For Harry had only loaned his Cloak, not given it; and he had comprehended and mastered the Deathly Hallow that had been passed down through the Potter line.</p><p>Harry gazed directly at the invisible woman, and said, "Can the Dementors reach you, Bella?"</p><p>"No," said the woman in a soft, wondering voice. Then, "But my Lord... <i>you</i>..."</p><p>"If you say anything foolish, it will annoy me," Harry said coldly. "Or are you under the impression that I would sacrifice myself for you?"</p><p>"No, my Lord," the Dark Lord's servant replied, sounding puzzled, and perhaps awed.</p><p>"Follow," spoke Harry's cold whisper, and they continued their journey downward, as the Dark Lord reached into his pouch, and retrieved and ate a cookie. If Bellatrix had asked, Harry would have claimed it was for the chocolate, but she didn't ask.</p><hr size=1 noshade><p>The old wizard strode back into the midst of the Aurors, the silver and the red-golden phoenixes now following behind.</p><p>"<i>You -</i>" Amelia began to bellow.</p><p>"They have dismissed their Patronus," said Dumbledore. The old wizard didn't seem to raise his voice but his calm words somehow overrode her own. "I cannot find them now."</p><p>Amelia gritted her teeth, and put a number of scathing remarks on hold, and turned to the communications officer. "Tell the duty room to ask the Dementors <i>again</i> if they can sense Bellatrix Black."</p><p>The communications specialist spoke to her mirror for a moment, and a few seconds later, looked up, surprised. "No -"</p><p>Amelia was already cursing violently in her mind.</p><p>"- but they can see someone else on the lower levels who isn't a prisoner."</p><p>"Fine!" snapped Amelia. "Tell the Dementor that a dozen of its kind are authorized to enter Azkaban and seize whoever that is and anyone in their company! And if they see Bellatrix Black, they're to Kiss her immediately!"</p><p>Amelia turned and glared toward Dumbledore, then, daring him to argue; but the old wizard only looked at her a bit sadly, and held his peace.</p><hr size=1 noshade><p>Auror McCusker finished speaking to the corpse that drifted outside the window, conveying the Director's orders.</p><p>The corpse gave him a deathly smile that almost unstrung his limbs, and then floated downward.</p><p>Soon after, a dozen Dementors arose from where they had drifted in the central pit of Azkaban, and headed outward, toward the walls of the vast metal structure that towered above them.</p><p>Entering through holes set into the base of Azkaban, the darkest of all creatures began their march of horror.</p>
+</div>
+</div><div style='height:10px'></div>
+
+<center>
+<table border=0>
+<tr>
+<td valign=middle>
+	<img src='http://b.fanfiction.net/static/fcons/24/balloon.png'>
+</td>
+<td valign=middle>
+	<a class='positive' onClick='select_drop("review");' href='#'>Review this Chapter</a>
+</td>
+</tr>
+</table>
+</center>
+<div style='height:10px'></div>
+
+<div class=sep></div>
+
+<FORM name=myselect><TABLE WIDTH='100%' cellpadding=4>
+			<TR>
+				<TD>
+				<SCRIPT type='text/javascript'>
+  var storyid = 5782108;
+  var chapter = 56;
+  var chapters = 63;
+  var words = 364480;
+  var userid = 2269863;
+  var title = 'Harry+Potter+and+the+Methods+of+Rationality';
+  var title_t = 'Harry Potter and the Methods of Rationality';
+  var summary = 'Petunia married a professor, and Harry grew up reading science and science fiction. Then came the Hogwarts letter, introducing strange new opportunities to exploit. And new friends, like Hermione, and Professor McGonagall, and Professor Quirrell.';
+  var categoryid = 224;
+  var cat_title = 'Harry Potter';
+  var datep = '02-28-10';
+  var dateu = '11-28-10';
+  var author = 'Less Wrong';
+  
+  
+function select_drop(sel_value) {
+
+  var rev = 1;
+  var logind = 'http://login.fanfiction.net';
+
+  var review_url = '/review.php?storyid='+storyid+'&chapter='+chapter+'&storytextid=22432181';
+
+  var toast;
+
+  if(sel_value == 'review') {
+  	toast = xwindow(logind+'/review.php?storyid='+storyid+'&chapter='+chapter+'&storytextid=22432181',560,470);
+  }
+  else if (sel_value == 'abuse') {
+  	toast = xwindow(logind+'/report.php?categoryid='+categoryid+'&chapter='+chapter+'&storyid='+storyid+'&title='+title,560,510);
+  }
+  else if (sel_value == 'c2') {
+ 	toast = xwindow(logind+'/c2_addstory.php?action=add&storyid='+storyid,560,470);
+  }
+  else if (sel_value == 'fs') {
+  	toast = xwindow(logind+'/fav_add.php?add_favstory=1&storyid='+storyid,560,470);
+  }
+  else if (sel_value == 'fa') {
+  	toast = xwindow(logind+'/fav_add.php?add_favauthor=1&storyid='+storyid,560,470);
+  }
+  else if (sel_value == 'aa') {
+  	toast = xwindow(logind+'/fav_add.php?add_authoralert=1&storyid='+storyid,560,470);
+  }
+  else if (sel_value == 'sa') {
+    toast = xwindow(logind+'/fav_add.php?add_storyalert=1&storyid='+storyid,560,470);
+  }
+
+}
+				</SCRIPT>
+
+				<select name=opt title='story actions'>
+
+				<option value=abuse>Report Possible Abuse
+				<option value=fs selected>Add Story to Favorites
+				<option value=sa>Add Story to Story Alert
+				<option value=fa>Add Author to Favorites
+				<option value=aa>Add Author to Author Alert
+				<option value=c2>Add Story to Community
+
+				</select>
+				<input type=button value=Go onClick='select_drop(document.myselect.opt.options[document.myselect.opt.selectedIndex].value)'>
+				</TD>
+
+				<TD ALIGN=RIGHT><INPUT TYPE=BUTTON Value='&nbsp;&lt; Prev&nbsp;' onClick="self.location='/s/5782108/55/Harry_Potter_and_the_Methods_of_Rationality'"> <SELECT title='chapter navigation' Name=chapter onChange="self.location = '/s/5782108/'+ this.options[this.selectedIndex].value + '/Harry_Potter_and_the_Methods_of_Rationality';"><option  value=1 >1. A Day of Very Low Probability<option  value=2 >2. Everything I Believe Is False<option  value=3 >3. Comparing Reality To Its Alternatives<option  value=4 >4. The Efficient Market Hypothesis<option  value=5 >5. The Fundamental Attribution Error<option  value=6 >6. The Planning Fallacy<option  value=7 >7. Reciprocation<option  value=8 >8. Positive Bias<option  value=9 >9. Title Redacted, Part I<option  value=10 >10. Self Awareness, Part II<option  value=11 >11. Omake Files 1 and 2<option  value=12 >12. Impulse Control<option  value=13 >13. Asking the Wrong Questions<option  value=14 >14. The Unknown and the Unknowable<option  value=15 >15. Conscientiousness<option  value=16 >16. Lateral Thinking<option  value=17 >17. Locating the Hypothesis<option  value=18 >18. Dominance Hierarchies<option  value=19 >19. Delayed Gratification<option  value=20 >20. Bayes's Theorem<option  value=21 >21. Rationalization<option  value=22 >22. The Scientific Method<option  value=23 >23. Belief in Belief<option  value=24 >24. Machiavellian Intelligence Hypothesis<option  value=25 >25. Hold Off on Proposing Solutions<option  value=26 >26. Noticing Confusion<option  value=27 >27. Empathy<option  value=28 >28. Reductionism<option  value=29 >29. Egocentric Bias<option  value=30 >30. Working in Groups, Pt 1<option  value=31 >31. Working in Groups, Pt 2<option  value=32 >32. Interlude: Personal Financial Management<option  value=33 >33. Coordination Problems, Pt 1<option  value=34 >34. Coordination Problems, Pt 2<option  value=35 >35. Coordination Problems, Pt 3<option  value=36 >36. Status Differentials<option  value=37 >37. Interlude: Crossing the Boundary<option  value=38 >38. The Cardinal Sin<option  value=39 >39. Pretending to be Wise, Pt 1<option  value=40 >40. Pretending to be Wise, Pt 2<option  value=41 >41. Frontal Override<option  value=42 >42. Courage<option  value=43 >43. Humanism, Pt 1<option  value=44 >44. Humanism, Pt 2<option  value=45 >45. Humanism, Pt 3<option  value=46 >46. Humanism, Pt 4<option  value=47 >47. Personhood Theory<option  value=48 >48. Utilitarian Priorities<option  value=49 >49. Prior Information<option  value=50 >50. Self Centeredness<option  value=51 >51. Title Redacted, Pt 1<option  value=52 >52. The Stanford Prison Experiment, Pt 2<option  value=53 >53. The Stanford Prison Experiment, Pt 3<option  value=54 >54. The Stanford Prison Experiment, Pt 4<option  value=55 >55. The Stanford Prison Experiment, Pt 5<option  value=56 selected>56. TSPE, Constrained Optimization, Pt 6<option  value=57 >57. TSPE, Constrained Cognition, Pt 7<option  value=58 >58. TSPE, Constrained Cognition, Pt 8<option  value=59 >59. TSPE, Curiosity, Pt 9<option  value=60 >60. The Stanford Prison Experiment, Pt 10<option  value=61 >61. TSPE, Secrecy and Openness, Pt 11<option  value=62 >62. The Stanford Prison Experiment, Final<option  value=63 >63. TSPE, Aftermaths</select> <INPUT TYPE=BUTTON Value='&nbsp;Next &gt;&nbsp;' onClick="self.location='/s/5782108/57/Harry_Potter_and_the_Methods_of_Rationality'"></TD>
+			</TR>
+		</TABLE></form>
+		
+	<br><center>
+<script type='text/javascript'>
+if(getCookie('adblocker') < 1) {
+ 	GA_googleFillSlot('ff_text_728x90_bottom');
+}
+</script>
+</center>
+	<br><div align=right style='height:10px;border-top:1px solid #cdcdcd;'><a href='#top'>Return to Top</a></div></div><div id='jstoreflash'></div>
+				<script type='text/javascript'>
+				$.xStore.load('/static/flash/jstore.swf');			
+				function flash_ready(){
+					$.xStore.flash_ready();
+				}
+				$.xStore.ready(function(){
+					xbookmark_load();
+					$().ready(function() {
+						xb_story = 1;
+						xbload();
+					});
+				});
+				</script>
+				<script type='text/javascript'>
+
+				if(getCookie('adblocker') < 1 && getCookie('geo') != "CN")
+				{
+					document.write('<SCR'+'IPT type="text/javascript" ');
+					document.write('SRC="http://ads.adbrite.com/mb/text_group.php?sid=770438&br=1&dk=7469636b6574735f305f325f776562"></SCR'+'IPT>');
+				}
+				</script>
+		<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4098224-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+		</body></html>

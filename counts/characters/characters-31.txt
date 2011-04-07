@@ -1,0 +1,3 @@
+hermione: 4
+draco: 2
+harry: 2

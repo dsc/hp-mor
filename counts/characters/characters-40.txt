@@ -1,0 +1,2 @@
+harry: 11
+quirrell: 5
