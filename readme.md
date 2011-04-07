@@ -20,9 +20,9 @@ If some of those numbers look weird (like Snape) and you're curious, read the ne
 
 Instead of attempting to identify each dialogue line, the script looks for a character's name preceeded or followed by a "said" word.
 
-The [first script](bin/words.py) extracted a [giant] list of all the words that either preceeded or followed the name of a main character, and aggregated it by frequency. (The results look [like this](counts/words/totals.txt), and there are also [chapter counts](counts/words/), if you care.) I went through that list by hand to pull out words that were synonyms (for our purposes) of "said" in a dialogue line's speaking indicator, like "Harry said". (Here's [the list of words](etc/said-words.txt), and [one with counts](etc/said-counts.yaml).)
+The [first script](http://github.com/dsc/hp-mor/blob/master/bin/words.py) extracted a [giant] list of all the words that either preceeded or followed the name of a main character, and aggregated it by frequency. (The results look [like this](http://github.com/dsc/hp-mor/blob/master/counts/words/totals.txt), and there are also [chapter counts](http://github.com/dsc/hp-mor/tree/master/counts/words/), if you care.) I went through that list by hand to pull out words that were synonyms (for our purposes) of "said" in a dialogue line's speaking indicator, like "Harry said". (Here's [the list of words](http://github.com/dsc/hp-mor/blob/master/etc/said-words.txt), and [one with counts](http://github.com/dsc/hp-mor/blob/master/etc/said-counts.yaml).)
 
-Then a [second script](bin/tally.py) went through everything again, this time only counting instances of those words preceeding or following a main character name, and keeping count by character. The totals are what you see above; the by-chapter tallys follow.
+Then a [second script](http://github.com/dsc/hp-mor/blob/master/bin/tally.py) went through everything again, this time only counting instances of those words preceeding or following a main character name, and keeping count by character. The totals are what you see above; the by-chapter tallys follow.
 
 You can download a tar of all this from [github](http://github.com/dsc/hp-mor).
 
